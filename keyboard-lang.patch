@@ -1,0 +1,35 @@
+--- a/sway/commands/bind.c	2019-05-12 03:59:43.614399853 +1000
++++ b/sway/commands/bind.c	2019-05-12 04:02:03.259677398 +1000
+@@ -349,10 +349,6 @@
+ 			binding->flags |= BINDING_BORDER | BINDING_CONTENTS | BINDING_TITLEBAR;
+ 		} else if (strcmp("--border", argv[0]) == 0) {
+ 			binding->flags |= BINDING_BORDER;
+-		} else if (strcmp("--to-code", argv[0]) == 0) {
+-			if (!bindcode) {
+-				binding->flags |= BINDING_CODE;
+-			}
+ 		} else if (strcmp("--exclude-titlebar", argv[0]) == 0) {
+ 			exclude_titlebar = true;
+ 		} else if (strncmp("--input-device=", argv[0],
+@@ -634,10 +630,6 @@
+ }
+ 
+ bool translate_binding(struct sway_binding *binding) {
+-	if ((binding->flags & BINDING_CODE) == 0) {
+-		return true;
+-	}
+-
+ 	switch (binding->type) {
+ 	// a bindsym to translate
+ 	case BINDING_KEYSYM:
+--- a/include/sway/config.h	2019-05-12 04:03:27.180233029 +1000
++++ b/include/sway/config.h	2019-05-12 04:04:36.008351887 +1000
+@@ -50,7 +49,7 @@
+ 	char *input;
+ 	uint32_t flags;
+ 	list_t *keys; // sorted in ascending order
+-	list_t *syms; // sorted in ascending order; NULL if BINDING_CODE is not set
++	list_t *syms; // sorted in ascending order
+ 	uint32_t modifiers;
+ 	char *command;
+ };
