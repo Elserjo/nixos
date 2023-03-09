@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       ./kernel.nix
       ./desktop/gnome.nix
-      ./syncthing.nix
+      ./services/syncthing.nix
       ./unfree.nix
       ./unstable.nix
       ./virtualbox.nix
@@ -50,12 +50,6 @@
         keyMap = "ruwin_alt_sh-UTF-8";
     };
 
-    # Enable the X11 windowing system.
-    # services.xserver.enable = true;
-
-    # Enable CUPS to print documents.
-    # services.printing.enable = true;
-
     # Enable sound.
     sound.enable = true;
     hardware.pulseaudio.enable = false;
@@ -66,9 +60,6 @@
         alsa.support32Bit = true;
         pulse.enable = true;
     };
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.xserver.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.serg = {
@@ -89,7 +80,7 @@
         picard
         keepassxc
         quodlibet
-        zathura
+        emacs-gtk
         git
     ];
 };
@@ -123,10 +114,6 @@
 
     programs.vim.defaultEditor = true;
 
-    security.polkit.enable = true;
-    services.dbus.enable = true;
-    services.fstrim.enable = true;
-    services.gvfs.enable = true;
 
     services.journald.extraConfig = ''
                             Storage=persistent
@@ -136,7 +123,20 @@
     hardware.bluetooth.enable = true;
  
     # List services that you want to enable:
+    security.polkit.enable = true;
+    services.dbus.enable = true;
+    services.fstrim.enable = true;
+    services.gvfs.enable = true;
 
+    # Enable weekly garbage collect
+    nix.gc = {
+      automatic = true;
+      options = ''
+              --delete-old
+              '';
+      dates = "weekly";
+    };
+    
     # Copy the NixOS configuration file and link it from the resulting system
     # (/run/current-system/configuration.nix). This is useful in case you
     # accidentally delete configuration.nix.

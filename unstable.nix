@@ -10,5 +10,6 @@ in
     environment.systemPackages = with pkgs; [
         unstable.nicotine-plus
         unstable.tdesktop
+        unstable.yt-dlp
         ];    
 }
