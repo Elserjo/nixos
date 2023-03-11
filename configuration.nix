@@ -82,6 +82,7 @@
         quodlibet
         emacs-gtk
         git
+        nixfmt #Nix code formatter
     ];
 };
 

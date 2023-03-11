@@ -1,8 +1,8 @@
 { cfg, ... }:
 
 {
-    services.syncthing = {
-        enable = true;
-        user = "serg";
-    };
+  services.syncthing = {
+    enable = true;
+    user = "serg";
+  };
 }
