@@ -11,6 +11,7 @@
     ./desktop/gnome.nix
     ./services/sound.nix
     ./services/syncthing.nix
+    ./overlays/quodlibet.nix
     ./unfree.nix
     ./unstable.nix
     ./virtualbox.nix
@@ -71,7 +72,7 @@
       mediainfo-gui
       picard
       keepassxc
-      quodlibet
+      quodlibet-patched
       emacs-gtk
       git
       nixfmt # Nix code formatter
