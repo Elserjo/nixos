@@ -22,7 +22,8 @@
   boot.loader.systemd-boot.enable = true;
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
 
   #Set your time zone.
   time.timeZone = "Europe/Moscow";
